@@ -34,7 +34,7 @@
                           </li>
                           <li class="nav-item">
                             {% comment %} <a id="cart" class="nav-link" href="#">Cart(0)</a> {% endcomment %}
-                            <button id="cart" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
+                            <button id="cart" type="button" data-bs-html="true" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
                                 Cart(0)
                               </button> 
                         </li>
@@ -115,10 +115,21 @@
     //console.log('This is working')
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl)
+        return new bootstrap.Popover(popoverTriggerEl)
     })
     
+    $('#cart').on('click', function(){
+        if($('.popover').hasClass('in')){
+            $(this).popover('hide');
+        }
+        else
+        {
+       // document.getElementById("cart").setAttribute('data-content', '<h2>This is your cart</h2>')
 
+            $(this).attr('data-bs-content','<h5>Cannot proceed with Save while Editing a row.</h5>');
+            $(this).popover('show');
+        }
+        });
 
     if(localStorage.getItem('cart') == null){
         var cart =  {};
