@@ -42,7 +42,7 @@
                 </div>
 
                 <a href="/{{ product.id }}" class="btn btn-warning">View</a>
-                <button class="btn atc btn-warning">Add to Cart</button>
+                <button id="{{ product.id }}" class="btn atc btn-warning">Add to Cart</button>
                 
             </div>
         </div>
@@ -86,6 +86,8 @@
 
     $(document).on('click', '.atc', function(){
         console.log("The add to cart button is clicked")
+        var item_id = this.id.toString()
+        console.log(item_id)
     })
 </script>
 </html>
