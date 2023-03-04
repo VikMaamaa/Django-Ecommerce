@@ -70,7 +70,7 @@
         <div class="card">
             <img src=" {{ product.image }}" class="card-img-top" alt="" >
             <div class="card-body">
-                <div class="card-title">
+                <div id="nm{{ product.id }}"  class="card-title">
                     {{product.title}}
                 </div>
                 <div class="card-text">
@@ -126,7 +126,7 @@
         {
        // document.getElementById("cart").setAttribute('data-content', '<h2>This is your cart</h2>')
 
-            $(this).attr('data-bs-content','<h5>Cannot proceed with Save while Editing a row.</h5>');
+            //$(this).attr('data-bs-content','<h5>Cannot proceed with Save while Editing a row.</h5>'); 
             $(this).popover('show');
         }
         });
@@ -152,6 +152,24 @@
         localStorage.setItem('cart', JSON.stringify(cart))
         document.getElementById("cart").innerHTML = "Cart("+ Object.keys(cart).length+")"
         
+        
     })
+
+    DisplayCart(cart)
+    
+    function DisplayCart(cart){
+        var cartString = "";
+        cartString += "<h5>This is your cart</h5>"
+        var cartIndex = 1
+       
+        for(var x in cart){
+            console.log(x)
+            cartString += cartIndex
+            cartString += document.getElementById("nm"+x)?.innerHTML + "Qty:" + cart[x] + "</br>"
+            cartIndex += 1
+        }
+
+        document.getElementById("cart").setAttribute('data-bs-content', cartString)
+    }
 </script>
 </html>
