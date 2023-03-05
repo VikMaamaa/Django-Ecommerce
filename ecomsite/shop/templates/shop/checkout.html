@@ -14,8 +14,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="col-md-12">
-            <div class="row">
+        <div class="row mt-3">
+            <div class="col-md-12">
                 <ul class="list-group" id='item_list'>
                     {% comment %} <li class="list-group-item d-flex justify-content-between align-items-center">
                       A list item
@@ -30,6 +30,46 @@
                       <span class="badge bg-primary rounded-pill">1</span>
                     </li> {% endcomment %}
                   </ul>
+            </div>
+        </div>
+
+        <div class='row mt-5'>
+            <div class='col-md-12'>
+                <form method="POST" class="row">
+                      {% csrf_token %}
+                      <div class="form-group mb-3 col-md-6">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                      </div>
+                      <div class="form-group mb-3 col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="john@john.com">
+                      </div>
+                
+                    <div class="form-group mb-3 col-md-12">
+                      <label for="address">Address</label>
+                      <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St">
+                    </div>
+                  
+                 <div class="form-group mb-3 col-md-6">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" name="city" id="city">
+                      </div>
+                      <div class="form-group mb-3 col-md-4">
+                        <label for="state">State</label>
+                        <input type="text" name="state" id ="state" class="form-control" >
+                        
+                      </div>
+                      <div class="form-group mb-3 col-md-2">
+                        <label for="zipcode">Zip</label>
+                        <input type="text" class="form-control" name="zipcode" id="zipcode">
+                      </div>
+                   
+                   
+                    <div class='col-12 mt-3'>
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </div>
+                  </form>
             </div>
         </div>
     </div>
