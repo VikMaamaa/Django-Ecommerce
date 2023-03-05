@@ -70,8 +70,7 @@
         <div class="card">
             <img src=" {{ product.image }}" class="card-img-top" alt="" >
             <div class="card-body">
-                <div id="nm{{ product.id }}"  class="card-title">
-                    {{product.title}}
+                <div id="nm{{ product.id }}"  class="card-title">{{product.title}}
                 </div>
                 <div class="card-text">
                    $ {{product.price}}
@@ -143,35 +142,44 @@
         console.log(item_id)
 
         if(cart[item_id] != undefined){
-            cart[item_id] = cart[item_id] + 1
+            quantity = cart[item_id][0] + 1
+            cart[item_id][0] = quantity
+            //cart[item_id] = cart[item_id] + 1
         }else{
-            cart[item_id] = 1
+            //cart[item_id] = 1
+            quantity = 1
+            name = document.getElementById("nm"+item_id).innerHTML
+            cart[item_id] =  [quantity, name]
+
+           
         }
 
         console.log(cart)
         localStorage.setItem('cart', JSON.stringify(cart))
-        document.getElementById("cart").innerHTML = "Cart("+ Object.keys(cart).length+")"
         
+        DisplayCart(cart)
         
     })
 
     DisplayCart(cart)
     
     function DisplayCart(cart){
+
         var cartString = "";
         cartString += "<h5>This is your cart</h5>"
         var cartIndex = 1
        
          for(var x in cart){
             console.log(x)
-            cartString += cartIndex
-            cartString += document.getElementById("nm"+x)?.innerHTML + "Qty:" + cart[x] + "</br>"
+            cartString +=  `<span class='mb-2'>${cartIndex}. </span>`
+            cartString += cart[x][1] + "Qty:" + cart[x][0] + "</br>"
             cartIndex += 1
         } 
 
-        cartString += "<a href='/checkout' class='btn bg-warning mb-0 py-1'>Checkout</a>"
+        cartString += "<a href='/checkout' class='mt-2 btn bg-warning mb-0 py-1'>Checkout</a>"
        console.log(cartString)
         document.getElementById("cart").setAttribute('data-bs-content', cartString)
+        document.getElementById("cart").innerHTML = "Cart("+ Object.keys(cart).length+")"
     }
 </script>
 </html>
