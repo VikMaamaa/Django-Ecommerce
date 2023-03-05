@@ -37,6 +37,8 @@
             <div class='col-md-12'>
                 <form method="POST" class="row">
                       {% csrf_token %}
+                    <input type="hidden" id="items" name="items">
+
                       <div class="form-group mb-3 col-md-6">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name">
@@ -88,5 +90,7 @@
         itemString = `<li class='list-group-item'>${name}-${quantity}</li>`
         $('#item_list').append(itemString)
     }
+
+    $('#items').val(JSON.stringify(cart))
 </script>
 </html>
