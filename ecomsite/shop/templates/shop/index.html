@@ -162,13 +162,15 @@
         cartString += "<h5>This is your cart</h5>"
         var cartIndex = 1
        
-        for(var x in cart){
+         for(var x in cart){
             console.log(x)
             cartString += cartIndex
             cartString += document.getElementById("nm"+x)?.innerHTML + "Qty:" + cart[x] + "</br>"
             cartIndex += 1
-        }
+        } 
 
+        cartString += "<a href='/checkout' class='btn bg-warning mb-0 py-1'>Checkout</a>"
+       console.log(cartString)
         document.getElementById("cart").setAttribute('data-bs-content', cartString)
     }
 </script>
